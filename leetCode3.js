@@ -1,4 +1,6 @@
 // 无重复字符的最长子串
+// 输入: "abcabcbb"
+// 输出: 3 
 //way1:辅助空间1个数组,存入+删除操作  (滑动窗口)
 var lengthOfLongestSubstring = function(s) {
     var arr=[];
