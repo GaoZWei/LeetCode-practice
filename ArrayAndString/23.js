@@ -26,18 +26,36 @@ var moveZeroes = function (nums) {
     }
     return nums
 };
-//splice+push
-var moveZeroes = function (nums) {
+//splice+push (有问题)
+var moveZeroes_two = function (nums) {
     if (nums.length < 2) {
         return nums
     }
     for (let i = 0; i < nums.length; i++) {
-        if (nums[i] == 0) {
-            nums.splice(i, 1)
+        if (nums[i] == 0) { //这块如果用while(nums[i] == 0),会在末尾一直处理,出现死循环
+            nums.splice(i, 1) //splice会改变原始数组
+            console.log(nums) //验证splice的变化
             nums.push(0)
+            // console.log(nums.length)
         }
     }
     return nums
 };
-var nums = [0, 1, 0, 3, 4, 0, 12]
-console.log(moveZeroes(nums))
+
+//splice+push (正常)
+function moveToEnd(arr) {
+    let count = 0; //用count来防止死循环
+    for (let i = 0; i < arr.length - count; i++) {
+        while (arr[i] === 0) { //!!!一直对i=1判断,直到它不是0
+            arr.splice(i, 1);
+            arr.push(0);
+            count++;
+            console.log(i) //验证i的变化
+        }
+    }
+    return arr;
+}
+// var nums = [0, 1, 0, 3, 4, 0, 12]
+// var nums = [0, 1, 0, 4, 0, 12]
+var nums = [0, 1, 0, 0, 4, 0, 12]
+console.log(moveToEnd(nums))
