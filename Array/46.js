@@ -34,7 +34,7 @@ var permute = function (nums) {
     }
     var arr = []
     var tmp = []
-    const fill = (tmp) => {
+    const fill = () => {
         if (tmp.length == len) { //如果数组长度和nums一样,放入arr
             arr.push(tmp.slice())
             // tmp=[]  这块不用清空  递归而已
@@ -45,12 +45,12 @@ var permute = function (nums) {
                 tmp.push(nums[i])
                 // console.log(tmp)
                 // console.log(tmp.slice())
-                fill(tmp)
+                fill()
                 tmp.pop()
             }
         }
     }
-    fill(tmp)
+    fill()
     return arr
 }
 
