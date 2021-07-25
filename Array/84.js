@@ -70,3 +70,7 @@ var largestRectangleArea = function (heights) {
 var heights = [2, 1, 5, 6, 2, 3]
 var heights = [2, 4]
 console.log(largestRectangleArea(heights))
+
+// 等价于:
+// 一个数组遍历,当遇见的元素比栈顶元素小的的时候,略过,出栈一个,并计算面积
+// 相反的话,入栈
