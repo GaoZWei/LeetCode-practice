@@ -53,6 +53,48 @@ var swap = (a, i, j) => {
     a[j] = tmp
 }
 
+// 思路2:
+// 快速排序:分治思想,选个基准元素,分开判断
+var findKthLargest = (nums, k) => {
+    var n = nums.length
+    const quick = (left, right) => {
+        if (left > right) return
+        var random = Math.floor(Math.random() * (right - left + 1)) + left
+        swap(nums, random, right)
+        var pivotIndex = partition(nums, left, right) //记录基准的左边有几个
+        if (pivotIndex > n - k) {
+            quick(left, pivotIndex - 1)
+        } else {
+            quick(pivotIndex + 1, right)
+        }
+    }
+    quick(0, n - 1)
+    return nums[n - k]
+}
+
+//分治
+var partition = (nums, left, right) => {
+    let pivot = nums[right]
+    let pivotIndex = left //就是为了计数
+    for (let i = left; i < right; i++) {
+        if (nums[i] < pivot) {
+            swap(nums, i, pivotIndex)
+            pivotIndex++
+        }
+    }
+    swap(nums, right, pivotIndex) //循环结束,和最后的换一下
+    return pivotIndex
+}
+
+//交换
+var swap = (a, i, j) => {
+    var tmp = a[i]
+    a[i] = a[j]
+    a[j] = tmp
+}
+
+
+
 var nums = [3, 2, 1, 5, 6, 4]
 var k = 2
 console.log(findKthLargest(nums, k))
