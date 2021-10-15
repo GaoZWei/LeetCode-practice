@@ -44,6 +44,13 @@ var kSmallestPairs = function (nums1, nums2, k) {
 // 1. 当堆内元素个数小于k的时候，则将新元素push到堆尾，执行堆尾元素的上浮操作
 // 2. 当堆内元素的个数大于等于k时，则判读堆顶元素和与新元素比较，如果比堆顶元素小，则将堆顶元素替换成新元素，然后执行堆顶元素的下沉操作。否则不放进堆
 var kSmallestPairs = function (nums1, nums2, k) {
+    //截取前k个数字
+    if (nums1.length > k) {
+        nums1 = nums1.slice(0, k)
+    }
+    if (nums2.length > k) {
+        nums2 = nums2.slice(0, k)
+    }
     var heap = []
     for (let i = 0; i < nums1.length; i++) {
         for (let j = 0; j < nums2.length; j++) {
