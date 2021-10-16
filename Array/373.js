@@ -17,30 +17,52 @@ var kSmallestPairs = function (nums1, nums2, k) {
 };
 
 
-//heap解法(没完成)
+//heap解法(完成)(堆栈溢出)
 var kSmallestPairs = function (nums1, nums2, k) {
     var m = nums1.length
     var n = nums2.length
+    if (m > k) {
+        nums1 = nums1.slice(0, k)
+    }
+    if (n > k) {
+        nums2 = nums2.slice(0, k)
+    }
     //初始化结果
     var res = []
     if (m == 0 || n == 0) return res
     //初始化heap
-    var heap = []
-    heap.push([nums1[0], nums2[0]])
+    var heap = [
+        [0, 0]
+    ]
     // 去重数组
-    var x = new Array(m)
-    for (let i = 0; i < n; i++) {
-        x[i] = new Array(n).fill(false)
+    var visited = new Array(m)
+    for (let i = 0; i < m; i++) {
+        visited[i] = new Array(n).fill(0)
     }
-    console.log(x)
-    console.log(heap)
-    //主逻辑
-    while (k > 0 && !heap.length != 0) {
-        heap.sort((a, b) => a[0])
+    visited[0][0] = true
+
+    while (k > 0 && heap.length) {
+        var [i, j] = heap.shift()
+        res.push([nums1[i], nums2[j]])
+
+        //其他相邻的
+        var next = [i + 1, j]
+        if (next[0] < m && !visited[next[0]][next[1]]) {
+            visited[next[0]][next[1]] = true
+            heap.push(next)
+        }
+        var next = [i, j + 1]
+        if (next[1] < n && !visited[next[0]][next[1]]) {
+            visited[next[0]][next[1]] = true
+            heap.push(next)
+        }
+        --k
+        heap.sort((a, b) => (nums1[a[0]] + nums2[a[1]]) - (nums1[b[0]] + nums2[b[1]]))
     }
+    return res
 }
 
-// 大顶堆(代码超时了)
+// 大顶堆(代码超时了),又可以了
 // 1. 当堆内元素个数小于k的时候，则将新元素push到堆尾，执行堆尾元素的上浮操作
 // 2. 当堆内元素的个数大于等于k时，则判读堆顶元素和与新元素比较，如果比堆顶元素小，则将堆顶元素替换成新元素，然后执行堆顶元素的下沉操作。否则不放进堆
 var kSmallestPairs = function (nums1, nums2, k) {
