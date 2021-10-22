@@ -10,9 +10,12 @@ var generateParenthesis = function (n) {
             res.push(str)
             return
         }
+        //两个约束
+        //1.只要左括号有剩余, 就可以选左括号
         if (lRemain > 0) {
             dfs(lRemain - 1, rRemain, str + "(")
         }
+        //2.只有右括号剩余 > 左括号剩余, 才可以选择右括号
         if (rRemain > lRemain) {
             dfs(lRemain, rRemain - 1, str + ")")
         }
