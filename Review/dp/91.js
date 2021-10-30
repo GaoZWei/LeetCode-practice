@@ -17,5 +17,25 @@ var numDecodings = function (s) {
     }
     return dp[len]
 };
+var numDecodings = function (s) {
+    if (s == null || s.length == 0) {
+        return 0;
+    }
+    var len = s.length
+    var dp = new Array(len + 1).fill(0)
+    dp[0] = 1 //只初始化用
+    dp[1] = s[0] === "0" ? 0 : 1
+    for (let i = 2; i <= len; i++) {
+        var one = s.slice(i - 1, i)
+        var two = s.slice(i - 2, i)
+        if (two >= 10 && two <= 26) { //直接用数字
+            dp[i] += dp[i - 2]
+        }
+        if (one >= 1 && one <= 9) {
+            dp[i] += dp[i - 1]
+        }
+    }
+    return dp[len]
+}
 var s = "226"
 console.log(numDecodings(s))
