@@ -1,48 +1,43 @@
 // 前 K 个高频元素
 // 给你一个整数数组 nums 和一个整数 k ，请你返回其中出现频率前 k 高的元素。你可以按 任意顺序 返回答案。
+
+//小根堆  优先队列
 const topKFrequent = (nums, k) => {
-    //统计频次
     var freq = {}
-    var numsArr = []
-    for (var num of nums) {
-        if (freq[num]) {
-            freq[num]++
+    var numArr = []
+    for (let i = 0; i < nums.length; i++) {
+        if (freq[nums[i]]) {
+            freq[nums[i]]++
         } else {
-            numsArr.push(num)
-            freq[num] = 1
+            freq[nums[i]] = 1
+            numArr.push(nums[i])
         }
     }
 
     var heap = []
-    //交换
+
     var swap = (i, j) => {
-        var t = heap[i]
-        heap[i] = heap[j]
-        heap[j] = t
+        [heap[i], heap[j]] = [heap[j], heap[i]]
     }
 
-    //上浮
     var heapUp = (index) => {
         while (index > 0) {
-            var parent = (index - 1) >>> 1 //父节点的位置
+            var parent = (index - 1) >>> 1
             if (freq[heap[parent]] > freq[heap[index]]) {
-                swap(index, parent)
+                swap(parent, index)
                 index = parent
             } else {
                 break
             }
         }
     }
-
-    //下沉
     var heapDown = (index) => {
-        while (2 * index + 1 < heap.length) {
-            var children = 2 * index + 1
-            //选子较小的比较
+        while (index * 2 + 1 < heap.length) {
+            var children = index * 2 + 1
             if (children + 1 < heap.length && freq[heap[children + 1]] < freq[heap[children]]) {
                 children++
             }
-            if (freq(heap[index]) > freq[heap[children]]) {
+            if (freq[heap[index]] > freq[heap[children]]) {
                 swap(index, children)
                 index = children
             } else {
@@ -50,14 +45,11 @@ const topKFrequent = (nums, k) => {
             }
         }
     }
-
-
-    //建堆
-    for (var numItem of numsArr) {
-        if (heap.length < k) {
+    for (let numItem of numArr) {
+        if (heap.length < k) { //堆不满
             heap.push(numItem)
             heapUp(heap.length - 1)
-        } else if (freq[numItem] > freq[heap[0]]) {
+        } else if (freq[numItem] > freq[heap[0]]) { //当前值的数量>堆顶值的数量
             heap[0] = numItem
             heapDown(0)
         }
