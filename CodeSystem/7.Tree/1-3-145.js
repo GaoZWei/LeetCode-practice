@@ -34,3 +34,23 @@ var postorderTraversal = function (root) {
     } while (stack.length)
     return res.reverse()
 };
+
+//统一迭代
+var postorderTraversal = function (root) {
+    var res = []
+    if (root == null) return []
+    var stack = []
+    stack.push(root)
+    while (stack.length) {
+        var node = stack.pop()
+        if (!node) {
+            res.push(stack.pop().val)
+        } else {
+            stack.push(node)
+            stack.push(null)
+            node.right && stack.push(node.right)
+            node.left && stack.push(node.left)
+        }
+    }
+    return res
+};
