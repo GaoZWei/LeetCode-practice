@@ -35,6 +35,20 @@ var postorderTraversal = function (root) {
     return res.reverse()
 };
 
+//迭代可以这样写
+var postorderTraversal = function (root) {
+    var res = []
+    if (!root) return res
+    var stack = [root]
+    while (stack.length) {
+        var node = stack.pop()
+        res.push(node.val)
+        node.left && stack.push(node.left)
+        node.right && stack.push(node.right)
+    }
+    return res.reverse()
+};
+
 //统一迭代
 var postorderTraversal = function (root) {
     var res = []

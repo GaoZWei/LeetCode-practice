@@ -32,5 +32,5 @@ var convertBST = function (root) {
         pre = cur.val
         cur = cur.left
     }
-return root
+    return root
 }
