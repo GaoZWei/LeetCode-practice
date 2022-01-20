@@ -1,5 +1,5 @@
 //es5继承
-
+// https://www.cnblogs.com/kaicy/p/14665501.html
 //父类
 function Animal(name) {
     this.name = name

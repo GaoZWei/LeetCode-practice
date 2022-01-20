@@ -1,5 +1,5 @@
 //继承的实现
-
+// https://www.jianshu.com/p/3d09c6fe330e
 // es6
 class Animal {
     constructor(props) {
