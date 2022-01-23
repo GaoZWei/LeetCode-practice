@@ -1,5 +1,5 @@
 // 将数字千分位用逗号隔开
-
+// https://juejin.cn/post/6946136940164939813#heading-42
 var format = (n) => {
     var num = n.toString()
     var decimals = ""
@@ -16,7 +16,7 @@ var format = (n) => {
         var tmp = ''
         var remainder = len % 3
         decimals ? tmp = "." + decimals : tmp
-        if (remainder > 0) {
+        if (remainder > 0) { //match返回数组
             return num.slice(0, remainder) + "," + num.slice(remainder, len).match(/\d{3}/g).join(",") + tmp
         } else {
             return num.slice(0, len).match(/\d{3}/g).join(',')
