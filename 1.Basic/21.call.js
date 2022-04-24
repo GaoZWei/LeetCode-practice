@@ -13,7 +13,8 @@ Function.prototype.myCall = function (obj) {
     for (let i = 1; i < arguments.length; i++) {
         args.push("arguments[" + i + "]")
     }
-    var result = eval("obj.fn(" + args + ")")
+    var result = eval("obj.fn(" + args + ")") 
+    // console.log(args.toString());  //字符串拼接,自动调用toString方法
     delete obj.fn
     return result
 }
@@ -33,3 +34,12 @@ function a() {
     console.log(this.name);
 }
 a.myCall(obj)
+
+//传的参数
+function b(age, haha) {
+    console.log(this.name);
+    console.log(age);
+    console.log(haha);
+}
+b.myCall(obj, 1122)
+b.apply(obj, [1, 2])
