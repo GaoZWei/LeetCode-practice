@@ -39,3 +39,12 @@ console.log(myboj); //createObj { name: '极客时间' }
 // var tmpObj={}
 // createObj.call(tmpObj)
 // return tmpObj
+var num = 1
+var obj2 = {
+    num: 2,
+    add: function () {
+        num = 3
+        console.log(this.num);
+    }
+}
+obj2.add()
