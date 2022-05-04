@@ -2,11 +2,10 @@
 // 这个带有第一次不延迟
 
 function debounce(fn, wait = 50, immidiate) {
-    let timer = null
-    // console.log(arguments); //[ƒ, 1000, true, callee: (...), Symbol(Symbol.iterator): ƒ]
+    var timer = null //定时器id
     return function () {
-        if (timer) clearTimeout(timer)
-        if (immidiate && !timer) {
+        if (timer) clearInterval(timer)
+        if (timer == null && immidiate) {
             fn.apply(this, arguments)
         }
         timer = setTimeout(() => {
@@ -15,5 +14,7 @@ function debounce(fn, wait = 50, immidiate) {
     }
 }
 
-const betterFn = debounce(() => console.log('fn防抖执行了'), 1000, true)
-document.addEventListener('scroll', betterFn)
+var betterFn = debounce(() => {
+    console.log('防抖')
+}, 1000, true)
+window.addEventListener("scroll", betterFn)
