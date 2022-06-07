@@ -1,6 +1,6 @@
 // Promise.race解决超时问题
 // https://www.bilibili.com/video/BV13P4y1V7TC?p=4
-// https://xie.infoq.cn/article/d91fb7973892068d1e4bc9eb6  (为主)
+// https://xie.infoq.cn/article/d91fb7973892068d1e4bc9eb6  (为主)=>超时问题
 // https://juejin.cn/post/6875152247714480136#heading-36
 
 let p1 = new Promise((resolve, reject) => {
