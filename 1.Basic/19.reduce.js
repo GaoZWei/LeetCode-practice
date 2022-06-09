@@ -1,4 +1,5 @@
 // Array.prototype.reduce实现
+// https://www.bilibili.com/video/BV1Q5411E7bb?spm_id_from=333.337.search-card.all.click
 
 // 如果需要回调函数从数组索引为 0 的元素开始执行，则需要传递初始值。
 // 否则，数组索引为 0 的元素将被作为初始值 initialValue，
