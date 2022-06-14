@@ -1,5 +1,5 @@
 // 模拟new操作
-
+// https://github.com/mqyqingfeng/Blog/issues/13
 // 先绑定obj到Fn.prototype的关系
 // 在绑定Fn到obj的this关系
 
