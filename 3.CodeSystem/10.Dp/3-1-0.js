@@ -1,4 +1,4 @@
-//01背包问题
+//01背包问题 (二维实现)
 
 function bagProblem(weight, value, size) {
     var n = weight.length
