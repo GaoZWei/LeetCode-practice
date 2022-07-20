@@ -1,6 +1,7 @@
 // 188. 买卖股票的最佳时机 IV
 // k笔交易,计算最大利润
 
+// 奇数买入状态, 偶数卖出状态
 var maxProfit = function (k, prices) {
     if (prices == null || prices.length < 2 || k == 0) {
         return 0;
