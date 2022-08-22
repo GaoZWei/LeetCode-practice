@@ -1,9 +1,7 @@
-// 583. 两个字符串的删除操作
-// 给定两个单词 word1 和 word2 ，返回使得 word1 和  word2 相同所需的最小步数。
+// 72. 编辑距离 hard
 
-// way1:最大公共子序列,再干掉即可
+// 给你两个单词 word1 和 word2， 请返回将 word1 转换成 word2 所使用的最少操作数  。
 
-// way2: 正常删除
 var minDistance = function (word1, word2) {
     var m = word1.length
     var n = word2.length
@@ -19,14 +17,13 @@ var minDistance = function (word1, word2) {
             if (word1[i - 1] == word2[j - 1]) {
                 dp[i][j] = dp[i - 1][j - 1]
             } else {
-                dp[i][j] = Math.min(dp[i - 1][j] + 1, dp[i][j - 1] + 1, dp[i - 1][j - 1] + 2) //分别删除,全部删除
+                dp[i][j] = Math.min(dp[i - 1][j] + 1, dp[i][j - 1] + 1, dp[i - 1][j - 1] + 1) //删除和增加一样,分别删除(2),替换(1),3种情况
             }
         }
     }
     return dp[m][n]
 };
 
-var word1 = "sea",
-    word2 = "eat"
-
+var word1 = "horse",
+    word2 = "ros"
 console.log(minDistance(word1, word2));
