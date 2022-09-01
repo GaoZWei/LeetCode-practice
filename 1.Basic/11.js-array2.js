@@ -39,3 +39,12 @@ for (var i = 0; i < 10; i++) {
     }
 }
 // console.log(arr);
+
+var dp = new Array(2).fill(0)
+    .map(x => x + 1);
+var dp = new Array(2).fill(0)
+    .map(x => new Array(3).fill(0));
+console.log(dp);
+
+
+// var dp = new Array(m).fill('no').map(new Array(n).fill('no'))  错的
